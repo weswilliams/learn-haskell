@@ -1,3 +1,5 @@
+keepUpperCase st = [ c | c <- st, c `elem` ['A'..'Z']]
+
 lucky :: Int -> String
 lucky 7 = "lucky number seven"
 lucky x = show x ++ " is not lucky"
