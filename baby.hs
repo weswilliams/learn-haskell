@@ -30,3 +30,10 @@ fstLetter :: String -> String
 fstLetter "" = "empty string"
 fstLetter all@(x:xs) = all ++ " begins with " ++ [x]
 
+bmiTell :: Double -> Double -> String
+bmiTell weight height
+  | weight/height^2 <= 18.5 = "underweight"
+  | weight/height^2 <= 25.0 = "normal"
+  | weight/height^2 <= 30.0 = "overweight"
+  | otherwise = "obese"
+
