@@ -1,3 +1,8 @@
+import Data.List
+
+numUniq :: (Eq a) => [a] -> Int
+numUniq = length . nub
+
 keepUpperCase st = [ c | c <- st, c `elem` ['A'..'Z']]
 
 lucky :: Int -> String
@@ -23,6 +28,11 @@ fibsFromElem n = fib (fibs !! n) (fibs !! (n+1))
 
 applyTwice :: (a -> a) -> a -> a
 applyTwice f x = f (f x)
+
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] _ = []
+zipWith' _ _ [] = []
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
 
 addVectors :: (Double, Double) -> (Double, Double) -> (Double, Double)
 addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
@@ -66,6 +76,9 @@ fstLetter :: String -> String
 fstLetter "" = "empty string"
 fstLetter all@(x:remainder) = all ++ " begins with " ++ [x] ++ ", remainder is " ++ remainder
 
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f x y = f y x
+
 bmiTell :: Double -> Double -> String
 bmiTell weight height
   | bmi <= 18.5 = "underweight"
@@ -93,5 +106,24 @@ cylinder r h =
   let sideArea = 2 * pi * r * h
       topArea = pi * r ^ 2
   in  sideArea + 2 * topArea
+
+largestDivisible :: Integer
+largestDivisible = head (filter p [100000, 99999..])
+  where p x = x `mod` 3829 == 0
+
+collatz :: Integer -> [Integer]
+collatz 1 = [1]
+collatz n
+  | even n = n:collatz (n `div` 2)
+  | odd n = n:collatz (n*3+1)
+
+reverse' :: [a] -> [a]
+reverse' = foldl (flip (:)) []
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' p = foldr (\x acc -> if p x then x : acc else acc) []
+
+and' :: [Bool] -> Bool
+and' = foldr (&&) True
 
 
