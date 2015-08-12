@@ -1,3 +1,5 @@
+import qualified Data.Map as Map
+import Data.Char
 import Data.List
 
 numUniq :: (Eq a) => [a] -> Int
@@ -125,5 +127,48 @@ filter' p = foldr (\x acc -> if p x then x : acc else acc) []
 
 and' :: [Bool] -> Bool
 and' = foldr (&&) True
+
+removeNonUppercase :: [Char] -> [Char]
+removeNonUppercase st = [c | c <- st, c `elem` ['A'..'Z']]
+
+chain :: Integer -> [Integer]
+chain 1 = [1]
+chain n
+  | even n = n:chain (n `div` 2)
+  | odd n = n:chain (n * 3 + 1)
+
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . nub
+
+wordCounts :: String -> [(String, Int)]
+wordCounts = map (\ws -> (head ws, length ws)) . group . sort .words
+
+isIn :: (Eq a) => [a] -> [a] -> Bool
+needle `isIn` haystack = any (needle `isPrefixOf`) $ tails haystack
+
+encode :: Int -> String -> String
+encode offset msg = map (chr . (+offset) . ord) msg
+
+decode :: Int -> String -> String
+decode offset codedMsg = encode (negate offset) codedMsg
+
+digitSum :: Int -> Int
+digitSum = sum . map digitToInt . show
+
+firstTo :: Int -> Maybe Int
+firstTo n = find ((n==) . digitSum) [1..]
+
+findKey :: (Eq k) => k -> [(k,v)] -> Maybe v
+findKey key xs = foldr (\(k,v) acc -> if key == k then Just v else acc) Nothing xs
+
+phoneBook :: Map.Map String String
+phoneBook = Map.fromList $
+  [("a","123")
+  ,("ab","234")
+  ,("c","345")
+  ,("d","456")
+  ,("e","567")
+  ,("f","678")
+  ]
 
 
