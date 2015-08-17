@@ -1,4 +1,4 @@
-module Rpn (solveRPN) where
+module Calculator.Rpn (solveRPN) where
 
 solveRPN :: String -> Double
 solveRPN = head . foldl foldingFunction [] . words
