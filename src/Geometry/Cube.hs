@@ -1,7 +1,4 @@
-module Geometry.Cube
-( volume
-, area
-) where
+module Geometry.Cube ( volume , area ) where
 
 import qualified Geometry.Cuboid as Cuboid
 
@@ -10,4 +7,3 @@ volume side = Cuboid.volume side side side
 
 area :: Float -> Float
 area side = Cuboid.area side side side
-

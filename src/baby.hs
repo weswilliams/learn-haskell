@@ -1,3 +1,5 @@
+module Baby where
+
 import qualified Data.Map as Map
 import Data.Char
 import Data.List
@@ -5,6 +7,7 @@ import Data.List
 numUniq :: (Eq a) => [a] -> Int
 numUniq = length . nub
 
+keepUpperCase :: [Char] -> [Char]
 keepUpperCase st = [ c | c <- st, c `elem` ['A'..'Z']]
 
 lucky :: Int -> String
@@ -21,6 +24,7 @@ quicksort (x:xs) =
 fib :: Integer -> Integer -> [Integer]
 fib a b = a:fib b (a+b)
 
+fibs :: [Integer]
 fibs = fib 0 1
 
 fibsFromElem :: Int -> [Integer]
@@ -76,7 +80,7 @@ tell (x:y:_) = "too many element list begins with: " ++ show x ++ ", " ++ show y
 
 fstLetter :: String -> String
 fstLetter "" = "empty string"
-fstLetter all@(x:remainder) = all ++ " begins with " ++ [x] ++ ", remainder is " ++ remainder
+fstLetter allChars@(x:remainder) = allChars ++ " begins with " ++ [x] ++ ", remainder is " ++ remainder
 
 flip' :: (a -> b -> c) -> (b -> a -> c)
 flip' f x y = f y x

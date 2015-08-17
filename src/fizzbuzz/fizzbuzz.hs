@@ -1,3 +1,5 @@
+module Fizzbuzz (fizzBuzz) where
+
 isFizz :: (Integral a) => a -> Bool
 isFizz = (0 ==) . (`mod` 3)
 
