@@ -11,6 +11,18 @@ spec = do
         let rpnString = "1 2 +"
         solveRPN rpnString `shouldBe` 3
 
+      it "should do simple subtraction of two numbers" $ do
+        let rpnString = "2 3 -"
+        solveRPN rpnString `shouldBe` -1.0
+
+      it "should do simple multiplication of two numbers" $ do
+        let rpnString = "2 3 *"
+        solveRPN rpnString `shouldBe` 6
+
+      it "should do simple division of two numbers" $ do
+        let rpnString = "6 2morenooodfadfasdfdsf /"
+        solveRPN rpnString `shouldBe` 3
+
       it "should use the value of the previous operation in a following operation" $ do
         let rpnString = "1 2 + 4 -"
         solveRPN rpnString `shouldBe` -1.0
