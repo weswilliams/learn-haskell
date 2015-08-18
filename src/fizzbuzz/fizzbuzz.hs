@@ -1,22 +1,16 @@
 module Fizzbuzz.Fizzbuzz (fizzBuzz) where
 
-if' :: Bool -> a -> a -> a
-if' True thenValue _  = thenValue
-if' False _ elseValue = elseValue
+data CardValue = Fizz | Buzz
+  deriving (Read,  Show, Enum, Eq, Ord)
 
 isDivisibleBy :: (Integral a) => a -> a -> Bool
-isDivisibleBy divisor = (0 ==) . (`mod` divisor)
-
-isFizz = isDivisibleBy 3
-
-isBuzz = isDivisibleBy 5
-
-fizz n = if' (isFizz n) "Fizz" ""
-buzz n = if' (isBuzz n) "Buzz" ""
+isDivisibleBy dividend divisor = 0 == (dividend `mod` divisor)
 
 fizzAndOrBuzz :: Int -> String
 fizzAndOrBuzz n
-  | or [isFizz n, isBuzz n] = fizz n ++ buzz n
+  | n `isDivisibleBy` 15 = show Fizz ++ show Buzz
+  | n `isDivisibleBy` 5 = show Buzz
+  | n `isDivisibleBy` 3 = show Fizz
   | otherwise = show n
 
 fizzBuzz :: [Int] -> String
