@@ -1,16 +1,22 @@
-module Fizzbuzz (fizzBuzz) where
+module Fizzbuzz.Fizzbuzz (fizzBuzz) where
 
-isFizz :: (Integral a) => a -> Bool
-isFizz = (0 ==) . (`mod` 3)
+if' :: Bool -> a -> a -> a
+if' True thenValue _  = thenValue
+if' False _ elseValue = elseValue
 
-isBuzz :: (Integral a) => a -> Bool
-isBuzz n = mod n 5 == 0
+isDivisibleBy :: (Integral a) => a -> a -> Bool
+isDivisibleBy divisor = (0 ==) . (`mod` divisor)
+
+isFizz = isDivisibleBy 3
+
+isBuzz = isDivisibleBy 5
+
+fizz n = if' (isFizz n) "Fizz" ""
+buzz n = if' (isBuzz n) "Buzz" ""
 
 fizzAndOrBuzz :: Int -> String
 fizzAndOrBuzz n
-  | and [isFizz n, isBuzz n] = "FizzBuzz"
-  | isFizz n  = "Fizz"
-  | isBuzz n  = "Buzz"
+  | or [isFizz n, isBuzz n] = fizz n ++ buzz n
   | otherwise = show n
 
 fizzBuzz :: [Int] -> String
