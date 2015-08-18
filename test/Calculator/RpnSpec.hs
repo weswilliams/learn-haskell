@@ -20,7 +20,7 @@ spec = do
         solveRPN rpnString `shouldBe` 6
 
       it "should do simple division of two numbers" $ do
-        let rpnString = "6 2morenooodfadfasdfdsf /"
+        let rpnString = "6 2 /"
         solveRPN rpnString `shouldBe` 3
 
       it "should use the value of the previous operation in a following operation" $ do
