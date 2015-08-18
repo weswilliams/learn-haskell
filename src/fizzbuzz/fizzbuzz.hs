@@ -1,7 +1,7 @@
 module Fizzbuzz.Fizzbuzz (fizzBuzz) where
 
 data CardValue = Fizz | Buzz
-  deriving (Read,  Show, Enum, Eq, Ord)
+  deriving (Show)
 
 isDivisibleBy :: (Integral a) => a -> a -> Bool
 isDivisibleBy dividend divisor = 0 == (dividend `mod` divisor)
