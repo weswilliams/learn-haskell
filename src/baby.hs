@@ -10,6 +10,9 @@ numUniq = length . nub
 keepUpperCase :: [Char] -> [Char]
 keepUpperCase st = [ c | c <- st, c `elem` ['A'..'Z']]
 
+keepLowerCase :: [Char] -> [Char]
+keepLowerCase st = [ c | c <- st, c `elem` ['a'..'z']]
+
 lucky :: Int -> String
 lucky 7 = "lucky number seven"
 lucky x = show x ++ " is not lucky"
