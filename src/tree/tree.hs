@@ -1,6 +1,18 @@
 module Tree where
 
+import qualified Data.Foldable as F
+
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving(Show)
+
+instance Functor Tree where
+  fmap f EmptyTree = EmptyTree
+  fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
+
+instance F.Foldable Tree where
+  foldMap f EmptyTree = mempty
+  foldMap f (Node x l r) = F.foldMap f l `mappend`
+                           f x           `mappend`
+                           F.foldMap f r
 
 singleton :: (Ord a) => a -> Tree a
 singleton x = Node x EmptyTree EmptyTree
