@@ -1,4 +1,4 @@
-module Fizzbuzz.FizzbuzzSpec where
+module Fizzbuzz.FizzBuzzSpec where
 
 
 import SpecHelper
