@@ -22,7 +22,7 @@ library
   build-depends:       base >=4.8 && <4.9
   hs-source-dirs:      src
   default-language:    Haskell2010
-  exposed-modules: Calculator.Rpn Fizzbuzz.Fizzbuzz
+  exposed-modules: Calculator.Rpn Calculator.Calc Fizzbuzz.Fizzbuzz
 
 test-suite spec
   type: exitcode-stdio-1.0
